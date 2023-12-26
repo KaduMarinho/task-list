@@ -26,20 +26,27 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default">
+    <!--<nav class="navbar navbar-default">-->
         <div class="container">
-            <div class="navbar-header">
+            <div class="col-sm-offset-2 col-sm-8">
+                <!--<div class="navbar-header">-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Task List
-                </a>
+                        <!-- Branding Image -->
+                        <!--<a class="navbar-brand" href="{{ url('/') }}">-->
+                            Task List
+                        <!--</a>-->
+                    </div>
+                </div>
+                <!--</div>-->
             </div>
-
         </div>
-    </nav>
+    <!--</nav>-->
+    
 
     @yield('content')
+    
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
