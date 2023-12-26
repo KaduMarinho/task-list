@@ -59,7 +59,8 @@
                                         <td>
                                             <form action="{{ url('task/'.$task->id) }}" method="POST">
                                                 {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
+                                                <!--{{ method_field('DELETE') }}-->
+                                                {{ method_field('PUT') }}
 
                                                 <button type="submit" class="btn btn-danger">
                                                     <i class="fa fa-btn fa-trash"></i>Delete

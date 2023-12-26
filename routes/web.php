@@ -22,7 +22,7 @@ use Illuminate\Http\Request;
  * Show Task Dashboard
  */
 Route::get('/', function () {
-    $tasks = Task::orderBy('created_at', 'asc')->get();
+    $tasks = Task::where('status', 'true')->orderBy('created_at', 'asc')->get();
  //echo(date('h:i:s'));exit;
     return view('tasks', [
         'tasks' => $tasks
@@ -50,11 +50,23 @@ Route::post('/task', function (Request $request) {
  
     return redirect('/');
 });
+
+/**
+ * Update Task
+ */ 
+Route::put('task/{id}', function(Task $task, $id)
+{    
+    $task = $task->find($id);
+    $task->status = 0;
+    $task->save();
+
+    return redirect('/');
+});
  
 /**
  * Delete Task
  */
-Route::delete('/task/{task}', function (Task $task) {
+Route::delete('/task/{task}', function (Task $task) {    
     $task->delete();
  
     return redirect('/');
