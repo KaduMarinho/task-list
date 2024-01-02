@@ -18,21 +18,24 @@ use Illuminate\Http\Request;
     return view('welcome');
 });*/
 
+// Authentication Routes...
+Route::auth();
+
 /**
  * Show Task Dashboard
  */
-Route::get('/', function () {
+/*Route::get('/', function () {
     $tasks = Task::where('status', 'true')->orderBy('created_at', 'asc')->get();
  //echo(date('h:i:s'));exit;
     return view('tasks', [
         'tasks' => $tasks
     ]);
-});
+});*/
 
 /**
  * Add New Task
  */
-Route::post('/task', function (Request $request) {
+/*Route::post('/task', function (Request $request) {
     $validator = Validator::make($request->all(), [
         'name' => 'required|max:255',
     ]);
@@ -49,25 +52,35 @@ Route::post('/task', function (Request $request) {
     $task->save();
  
     return redirect('/');
-});
+});*/
 
 /**
  * Update Task
  */ 
-Route::put('task/{id}', function(Task $task, $id)
+/*Route::put('task/{id}', function(Task $task, $id)
 {    
     $task = $task->find($id);
     $task->status = 0;
     $task->save();
 
     return redirect('/');
-});
+});*/
  
 /**
  * Delete Task
  */
-Route::delete('/task/{task}', function (Task $task) {    
+/*Route::delete('/task/{task}', function (Task $task) {    
     $task->delete();
  
     return redirect('/');
+});*/
+Auth::routes();
+
+Route::get('/', function () {
+    return view('welcome');
 });
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/tasks', 'TaskController@index');
+Route::post('/task', 'TaskController@store');
+Route::put('/task/{task}', 'TaskController@update');
+Route::delete('/task/{task}', 'TaskController@destroy');
