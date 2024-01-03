@@ -23,6 +23,28 @@
         .fa-btn {
             margin-right: 6px;
         }
+
+        .links > a {  
+            color: #000;              
+            padding: 0 25px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        } 
+
+        .navbar-collapse, .collapse {
+            /*border: 1px solid red;             */
+            margin-top:-35px;
+        }
+
+        @media screen and (max-width: 720px) {
+            .navbar-collapse, .collapse {
+                display: none !important;
+            }
+        }       
+
     </style>
 </head>
 <body id="app-layout">
@@ -30,15 +52,23 @@
         <div class="container">
             <div class="col-sm-offset-2 col-sm-8">
                 <!--<div class="navbar-header">-->
-                <div class="panel panel-default">
+                <div class="panel panel-default">                                       
                     <div class="panel-heading">
 
                         <!-- Branding Image -->
                         <!--<a class="navbar-brand" href="{{ url('/') }}">-->
                             Task List
                         <!--</a>-->
-                    </div>
+                    </div>                                                          
                 </div>
+                <div id="nav-content" class="navbar-collapse collapse">
+                    @if (Auth::check())
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="links"><a href="{{url('/home')}}">Home</a></li>
+                            <li class="links"><a href="{{url('/logout')}}">Sair</a></li>
+                        </ul>
+                    @endif                
+                </div> 
                 <!--</div>-->
             </div>
         </div>
