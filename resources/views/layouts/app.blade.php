@@ -37,13 +37,7 @@
         .navbar-collapse, .collapse {
             /*border: 1px solid red;             */
             margin-top:-35px;
-        }
-
-        @media screen and (max-width: 720px) {
-            .navbar-collapse, .collapse {
-                display: none !important;
-            }
-        }       
+        }             
 
     </style>
 </head>
@@ -61,13 +55,15 @@
                         <!--</a>-->
                     </div>                                                          
                 </div>
-                <div id="nav-content" class="navbar-collapse collapse">
-                    @if (Auth::check())
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="links"><a href="{{url('/home')}}">Home</a></li>
-                            <li class="links"><a href="{{url('/logout')}}">Sair</a></li>
-                        </ul>
-                    @endif                
+                <div id="nav-content" class="navbar-collapse collapse">                    
+                        <ul class="nav navbar-nav navbar-right">                                
+                            @if (Auth::check())
+                                <li class="links"><a href="{{url('/tasks')}}">Minhas Tarefas</a></li>
+                                <li class="links"><a href="{{url('/logout')}}">Sair</a></li>
+                            @else
+                                <li class="links"><a href="{{url('/')}}">Home</a></li>
+                            @endif
+                        </ul>                                    
                 </div> 
                 <!--</div>-->
             </div>
@@ -82,5 +78,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script>
+        //Makes navbar 'responsive' with Jquery
+        $(window).resize(function(){
+            console.log('resize called');
+            var width = $(window).width();
+            if(width < 720){
+                $('#nav-content').removeClass('navbar-collapse collapse');
+            }else{
+                $('#nav-content').addClass('navbar-collapse collapse');
+            }
+        }).resize();//trigger the resize event on page load
+
+</script>
 </body>
 </html>
